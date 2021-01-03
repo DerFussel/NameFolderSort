@@ -32,7 +32,6 @@ public class Sort {
         }
         compareStrings = createCompareStrings();
         listFolders();
-        //USE FILENAMEFILTER FOR COMPARING FILES TO compareStrings later on.
         for (String keyword : compareStrings) {
             if (keyword == null) {
                 break;
@@ -52,7 +51,6 @@ public class Sort {
             }
         }
 
-        //TO-DO: COPY THE DAMN FILES OF THE DAMN HASHMAP BOYYYOYOOOY
         System.out.println("\ncopying files....");
         for (String keyword : compareStrings) {
             if (keyword == null) {
