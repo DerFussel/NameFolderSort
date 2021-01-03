@@ -2,18 +2,23 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.HashMap;
 
 class Sort {
     private File path;
     private ArrayList<File> sortDirs;
-    private Set<File> listedFolders;
+    private ArrayList<File> listedFolders;
+    private String[] compareStrings;
+    private HashMap<String, ArrayList<File>> filesToCopy;
 
     public Sort(File path, ArrayList<File> sortDirs) {
         this.path = path;
         this.sortDirs = sortDirs;
-        listedFolders = new HashSet<>();
+        listedFolders = new ArrayList<>();
+        filesToCopy = new HashMap<>();
         sort();
     }
+
     private void sort() {
         //check if the given paths are all really paths and not files.
         if (!path.isDirectory()) {
@@ -24,26 +29,46 @@ class Sort {
             System.err.println("The to/by paths are not Directories :c");
             return;
         }
-        String[] compareStrings = getCompareStrings();
+        compareStrings = createCompareStrings();
         listFolders();
         //USE FILENAMEFILTER FOR COMPARING FILES TO compareStrings later on.
-
+        for (String keyword : compareStrings) {
+            if (keyword == null) {
+                break;
+            }
+            filesToCopy.put(keyword, new ArrayList<>());
+        }
+        System.out.println("\nFound files to be copied: ");
+        for (File folder : listedFolders) {
+            for (String keyword : compareStrings) {
+                if (keyword == null) {
+                    break;
+                }
+                if (keyword.equals(folder.getName())) {
+                    continue;
+                }
+                folder.listFiles(new MyKeywordFileNameFilter(keyword, this));
+            }
+        }
         System.out.println("ITS SORTED BOYYYYYY");
     }
 
     private void listFolders() {
-        File[] list = path.listFiles(new MyFileFilter());
+        File[] list = path.listFiles(new MyDirFileFilter());
+        System.out.println("\nFound Directories: ");
         for (File i : list) {
             listedFolders.add(i);
             System.out.println(i); //debug
         }
     }
-    private String[] getCompareStrings() {
+    private String[] createCompareStrings() {
         String[] compareStrings = new String[FolderSort.MAX_SORT_ATTRIBUTES];
         int j = 0;
+        System.out.println("\nGiven keywords: ");
         for (File i : sortDirs) {
             String dir = i.getName();
             compareStrings[j] = dir;
+            System.out.println("-" + compareStrings[j] + "-"); //debug
             j++;
         }
         return compareStrings;
@@ -56,5 +81,17 @@ class Sort {
             }
         }
         return true;
+    }
+    
+    public void addToCopyArrayList(String keyword, File path) {
+        ArrayList<File> list = filesToCopy.get(keyword);
+        //System.out.println("\nTO COPY FILES:");
+        if (list != null) {
+            list.add(path);
+            System.out.println(keyword + " : " + path);
+        }
+    }
+    public String[] getCompareStrings() {
+        return compareStrings;
     }
 }
