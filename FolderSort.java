@@ -14,9 +14,9 @@ public class FolderSort {
         System.out.println(path + " : " + path.isDirectory());
         System.out.println("Now the keywords to sort by/to. Divided by ONLY A ';' (e.g.: ahri;eve;...;). You have to create the folders named EXACTLY like the keywords.");
         getToSort(path);
-        toSort.clear(); //debug
-        toSort.add(new File(path.getPath() + "/" + "ahri")); //debug
-        toSort.add(new File(path.getPath() + "/" + "eve")); //debug
+        //toSort.clear(); //debug
+        //toSort.add(new File(path.getPath() + "/" + "ahri")); //debug
+        //toSort.add(new File(path.getPath() + "/" + "eve")); //debug
         // for (File i : toSort) { //debug
         //     System.out.println("-" + i + "-");
         // }

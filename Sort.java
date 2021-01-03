@@ -1,6 +1,8 @@
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.nio.file.*;
 
 public class Sort {
     private File path;
@@ -51,7 +53,25 @@ public class Sort {
         }
 
         //TO-DO: COPY THE DAMN FILES OF THE DAMN HASHMAP BOYYYOYOOOY
-
+        System.out.println("\ncopying files....");
+        for (String keyword : compareStrings) {
+            if (keyword == null) {
+                break;
+            }
+            ArrayList<File> list = filesToCopy.get(keyword);
+            if (list != null) {
+                for (File file : list) {
+                    Path pathObj = file.toPath();
+                    File temp = new File(path + "/" + keyword + "/" + pathObj.getFileName());
+                    System.out.println("copying: " + pathObj.getFileName());
+                    try {
+                        Files.copy(pathObj, temp.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    } catch(IOException e) {
+                        System.out.println("\nCopy failed. The given paths are:\n" + pathObj + "\n" + temp + "\n" + e.getMessage());
+                    }
+                }
+            }
+        }
         done = !done;
     }
 
@@ -85,12 +105,12 @@ public class Sort {
         return true;
     }
     
-    public void addToCopyArrayList(String keyword, File path) {
+    public void addToCopyArrayList(String keyword, File file) {
         ArrayList<File> list = filesToCopy.get(keyword);
         //System.out.println("\nTO COPY FILES:");
         if (list != null) {
-            list.add(path);
-            System.out.println(keyword + " : " + path);
+            list.add(file);
+            System.out.println(keyword + " : " + file);
         }
     }
 }
