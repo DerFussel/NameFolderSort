@@ -10,7 +10,7 @@ public class FolderSort {
         System.out.println("\nHello, this is my little program to sort files (espcially pictures) whose original Location is in diffrent folders.\n");
         System.out.println("Please hand me the folder to sort");
         File path = getPath();
-        path = new File("/Users/justuswolschner/Desktop/sevenbees/"); //debug
+        //path = new File("/Users/justuswolschner/Desktop/sevenbees/"); //debug
         System.out.println(path + " : " + path.isDirectory());
         System.out.println("Now the keywords to sort by/to. Divided by ONLY A ';' (e.g.: ahri;eve;...;). You have to create the folders named EXACTLY like the keywords.");
         getToSort(path);
