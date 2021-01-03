@@ -50,6 +50,9 @@ class Sort {
                 folder.listFiles(new MyKeywordFileNameFilter(keyword, this));
             }
         }
+
+        //TO-DO: COPY THE DAMN FILES OF THE DAMN HASHMAP BOYYYOYOOOY
+
         System.out.println("ITS SORTED BOYYYYYY");
     }
 
