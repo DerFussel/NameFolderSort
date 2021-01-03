@@ -91,7 +91,4 @@ class Sort {
             System.out.println(keyword + " : " + path);
         }
     }
-    public String[] getCompareStrings() {
-        return compareStrings;
-    }
 }
