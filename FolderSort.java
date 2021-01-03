@@ -17,9 +17,9 @@ public class FolderSort {
         toSort.clear();
         toSort.add(new File("/Users/justuswolschner/Desktop/sevenbees/ahri"));
         toSort.add(new File("/Users/justuswolschner/Desktop/sevenbees/eve"));
-        for (File i : toSort) { //debug
-            System.out.println("-" + i + "-");
-        }
+        // for (File i : toSort) { //debug
+        //     System.out.println("-" + i + "-");
+        // }
         Sort sorter = new Sort(path, toSort);
     }
     private static File getPath() {

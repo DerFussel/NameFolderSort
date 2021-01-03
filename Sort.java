@@ -1,13 +1,17 @@
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
 
 class Sort {
     private File path;
     private ArrayList<File> sortDirs;
+    private Set<File> listedFolders;
 
     public Sort(File path, ArrayList<File> sortDirs) {
         this.path = path;
         this.sortDirs = sortDirs;
+        listedFolders = new HashSet<>();
         sort();
     }
     private void sort() {
@@ -21,7 +25,18 @@ class Sort {
             return;
         }
         String[] compareStrings = getCompareStrings();
+        listFolders();
+        //USE FILENAMEFILTER FOR COMPARING FILES TO compareStrings later on.
+
         System.out.println("ITS SORTED BOYYYYYY");
+    }
+
+    private void listFolders() {
+        File[] list = path.listFiles(new MyFileFilter());
+        for (File i : list) {
+            listedFolders.add(i);
+            System.out.println(i); //debug
+        }
     }
     private String[] getCompareStrings() {
         String[] compareStrings = new String[FolderSort.MAX_SORT_ATTRIBUTES];
@@ -33,6 +48,7 @@ class Sort {
         }
         return compareStrings;
     }
+
     private boolean checkSortDirs() {
         for (File i : sortDirs) {
             if (!i.isDirectory()) {
