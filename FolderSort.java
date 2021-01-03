@@ -21,6 +21,11 @@ public class FolderSort {
         //     System.out.println("-" + i + "-");
         // }
         Sort sorter = new Sort(path, toSort);
+        if (sorter.done) {
+            System.out.println("\nDONE SORTING. Thanks for using my program :). I hope it worked to your desire.");
+        } else {
+            System.err.println("\nSorry, but something went wrong.");
+        }
     }
     private static File getPath() {
         String in = sc.nextLine();

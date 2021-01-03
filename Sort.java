@@ -2,12 +2,13 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-class Sort {
+public class Sort {
     private File path;
     private ArrayList<File> sortDirs;
     private ArrayList<File> listedFolders;
     private String[] compareStrings;
     private HashMap<String, ArrayList<File>> filesToCopy;
+    public boolean done = false;
 
     public Sort(File path, ArrayList<File> sortDirs) {
         this.path = path;
@@ -51,7 +52,7 @@ class Sort {
 
         //TO-DO: COPY THE DAMN FILES OF THE DAMN HASHMAP BOYYYOYOOOY
 
-        System.out.println("ITS SORTED BOYYYYYY");
+        done = !done;
     }
 
     private void listFolders() {
