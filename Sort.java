@@ -1,28 +1,44 @@
-import java.util.Scanner;
-
+import java.io.File;
+import java.util.ArrayList;
 
 class Sort {
-    public static void main(String[] args) {
-        System.out.println("\nHello, this is my little program to sort files (espcially pictures) whose original Location is in diffrent folders.\n");
-        System.out.println("Please hand me the folder to sort");
-        String path = getPath();
-        System.out.println("Now the folders to sort by/to.");
-        String[] toSort = getToSort();
-        for (int i = 0; i < 10; i++) {
-            System.out.println(toSort[i]);
-        }
+    private File path;
+    private ArrayList<File> sortDirs;
+
+    public Sort(File path, ArrayList<File> sortDirs) {
+        this.path = path;
+        this.sortDirs = sortDirs;
+        sort();
     }
-    private static String getPath() {
-        Scanner sc = new Scanner(System.in);
-        String in = sc.nextLine();
-        System.out.println(in);
-        return in;
-    }
-    private static String[] getToSort() {
-        String[] in = new String[10];
-        for (int i = 0; i < 10; i++) {
-            in[i] = "ahri";
+    private void sort() {
+        //check if the given paths are all really paths and not files.
+        if (!path.isDirectory()) {
+            System.err.println("The Path is not a Directory :c");
+            return;
         }
-        return in;
+        if (!checkSortDirs()) {
+            System.err.println("The to/by paths are not Directories :c");
+            return;
+        }
+        String[] compareStrings = getCompareStrings();
+        System.out.println("ITS SORTED BOYYYYYY");
+    }
+    private String[] getCompareStrings() {
+        String[] compareStrings = new String[FolderSort.MAX_SORT_ATTRIBUTES];
+        int j = 0;
+        for (File i : sortDirs) {
+            String dir = i.getName();
+            compareStrings[j] = dir;
+            j++;
+        }
+        return compareStrings;
+    }
+    private boolean checkSortDirs() {
+        for (File i : sortDirs) {
+            if (!i.isDirectory()) {
+                return false;
+            }
+        }
+        return true;
     }
 }
