@@ -96,6 +96,14 @@ public class Sort {
 
     private boolean checkSortDirs() {
         for (File i : sortDirs) {
+            if (!i.exists()) {
+                try {
+                    Files.createDirectory(i.toPath());
+                } catch(IOException e) {
+                    System.out.println(e.getMessage());
+                    return false;
+                }
+            }
             if (!i.isDirectory()) {
                 return false;
             }

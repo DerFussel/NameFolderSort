@@ -8,10 +8,10 @@ public class FolderSort {
     private static ArrayList<File> toSort = new ArrayList<>(MAX_SORT_ATTRIBUTES);
     public static void main(String[] args) {
         System.out.println("\nHello, this is my little program to sort files (espcially pictures) whose original Location is in diffrent folders.\n");
-        System.out.println("Please hand me the folder to sort");
+        System.out.println("Please hand me the main folder to sort");
         File path = getPath();
         System.out.println(path + " : " + path.isDirectory());
-        System.out.println("Now the keywords to sort by/to. Divided by ONLY A ';' (e.g.: ahri;eve;...;). You have to create the folders named EXACTLY like the keywords.");
+        System.out.println("Now the keywords to sort by/to. Divided by ONLY A ';' (e.g.: ahri;eve;...;).");
         getToSort(path);
         Sort sorter = new Sort(path, toSort);
         if (sorter.done) {
