@@ -10,14 +10,19 @@ public class FolderSort {
         System.out.println("\nHello, this is my little program to sort files (espcially pictures) whose original Location is in diffrent folders.\n");
         System.out.println("Please hand me the main folder to sort");
         File path = getPath();
-        System.out.println(path + " : " + path.isDirectory());
+        System.out.print("\"" + path + "\" : is a " + path.isDirectory() + " directory.\n");
         System.out.println("Now the keywords to sort by/to. Divided by ONLY A ';' (e.g.: ahri;eve;...;).");
+        System.out.println("If you choose \"all\" as your first keyword, it will take every file out of every folder and copy it to \"all\".");
         getToSort(path);
-        Sort sorter = new Sort(path, toSort);
-        if (sorter.done) {
-            System.out.println("\nDONE SORTING. Thanks for using my program :). I hope it worked to your desire.");
+        if (toSort.get(0).getName().equals("all")) {
+            All all = new All(path);
         } else {
-            System.err.println("\nSorry, but something went wrong.");
+            Sort sorter = new Sort(path, toSort);
+            if (sorter.done) {
+                System.out.println("\nDONE SORTING. Thanks for using my program :). I hope it worked to your desire.");
+            } else {
+                System.err.println("\nSorry, but something went wrong.");
+            }
         }
     }
     private static File getPath() {
