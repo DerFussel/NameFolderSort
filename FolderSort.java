@@ -3,7 +3,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class FolderSort {
-    public static final int MAX_SORT_ATTRIBUTES = 10;
+    public static final int MAX_SORT_ATTRIBUTES = 100;
     private static Scanner sc = new Scanner(System.in);
     private static ArrayList<File> toSort = new ArrayList<>(MAX_SORT_ATTRIBUTES);
     public static void main(String[] args) {
