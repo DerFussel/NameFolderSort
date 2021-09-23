@@ -1,4 +1,4 @@
-# FolderSort
+# NameFolderSort
 This Program sorts/edits the given path. It copies files into the given keyword-folders based on the keyword.
 It will compare the keywords to every file in every folder and copies matching files into the keyword-folder.
 
